@@ -63,10 +63,17 @@
     if (/Safari\//.test(ua)) return 'Safari';
     return 'Lainnya';
   }
-  function srcKunjungan() {
-    try { return new URLSearchParams(location.search).get('src') === 'qr' ? 'qr' : 'link'; }
-    catch (e) { return 'link'; }
-  }
+  /* Penanda ?src=qr dibaca SEKALI saat halaman dibuka, lalu address bar langsung
+     dibersihkan jadi URL polos (estetika — permintaan Herman 17-Jul-2026).
+     Statistik "Scan QR" di dashboard tetap tercatat. */
+  var SRC = 'link';
+  try {
+    if (new URLSearchParams(location.search).get('src') === 'qr') SRC = 'qr';
+    if (location.search && window.history && history.replaceState) {
+      history.replaceState(null, '', location.pathname);
+    }
+  } catch (e) {}
+  function srcKunjungan() { return SRC; }
   function catat(jenis) {
     try {
       var q = '?action=event&k=' + encodeURIComponent(SLUG) + '&jenis=' + encodeURIComponent(jenis) +
