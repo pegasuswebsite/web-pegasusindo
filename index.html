@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pegasus Nusantara Group — Building Indonesia's Premium Entertainment Group</title>
+  <meta name="description" content="Pegasus Nusantara Group — grup hiburan premium Indonesia: karting, bowling, billiard, tattoo studio, dan pengembangan SDM.">
+  <meta property="og:title" content="Pegasus Nusantara Group">
+  <meta property="og:description" content="Building Indonesia's Premium Entertainment Group.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pegasusindo.com/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230d0d0f' stroke='%23c9a227' stroke-width='3'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' fill='%23e8c96a' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d0f; --panel: #16161a; --garis: #26262c;
+      --emas: #c9a227; --emas-terang: #e8c96a; --emas-pudar: rgba(201,162,39,.35);
+      --putih: #f5f5f4; --abu: #9a9aa2; --abu-gelap: #6b6b73;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { background: var(--bg); }
+    body {
+      min-height: 100vh; color: var(--putih);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: radial-gradient(1000px 560px at 50% -10%, #1d1d24 0%, var(--bg) 62%);
+      display: flex; flex-direction: column; align-items: center;
+      padding: max(60px, 12vh) 24px 48px;
+    }
+    .anim { opacity: 0; transform: translateY(14px); animation: masuk .7s ease forwards; }
+    @keyframes masuk { to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .anim { animation: none; opacity: 1; transform: none; } }
+
+    .mono {
+      width: 84px; height: 84px; border: 1.5px solid var(--emas); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 34px;
+      font-family: 'Playfair Display', serif; font-size: 36px; color: var(--emas-terang);
+    }
+    h1 {
+      font-family: 'Playfair Display', serif; font-weight: 600; text-align: center;
+      font-size: clamp(34px, 7vw, 56px); letter-spacing: 6px; line-height: 1.15;
+    }
+    .grup {
+      margin-top: 10px; text-align: center; color: var(--emas-terang);
+      font-size: clamp(13px, 2.6vw, 17px); letter-spacing: 8px; font-weight: 500;
+    }
+    .garis {
+      width: 54px; height: 1.5px; margin: 34px auto;
+      background: linear-gradient(90deg, transparent, var(--emas), transparent);
+    }
+    .tagline {
+      font-family: 'Playfair Display', serif; font-style: italic; text-align: center;
+      color: var(--abu); font-size: clamp(15px, 3vw, 19px); max-width: 560px; line-height: 1.6;
+    }
+    .segera {
+      margin-top: 40px; padding: 9px 22px; border: 1px solid var(--garis); border-radius: 30px;
+      color: var(--abu-gelap); font-size: 11.5px; letter-spacing: 3px; text-transform: uppercase;
+    }
+    .brand-judul {
+      margin: 64px 0 18px; color: var(--abu-gelap); font-size: 11.5px;
+      letter-spacing: 3.6px; text-transform: uppercase; font-weight: 600; text-align: center;
+    }
+    .brand-daftar { display: flex; flex-wrap: wrap; justify-content: center; gap: 11px; max-width: 720px; }
+    .brand {
+      display: flex; align-items: center; gap: 11px; padding: 12px 20px 12px 13px;
+      background: rgba(22,22,26,.65); border: 1px solid var(--garis); border-radius: 13px;
+    }
+    .brand .bm {
+      width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--emas-pudar);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 14px; color: var(--emas-terang);
+    }
+    .brand span { font-size: 13.5px; }
+    .footer {
+      margin-top: auto; padding-top: 70px; text-align: center;
+      color: var(--abu-gelap); font-size: 10.5px; letter-spacing: 2.6px; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="mono anim">P</div>
+  <h1 class="anim" style="animation-delay:.08s">PEGASUS</h1>
+  <div class="grup anim" style="animation-delay:.14s">NUSANTARA GROUP</div>
+  <div class="garis anim" style="animation-delay:.2s"></div>
+  <p class="tagline anim" style="animation-delay:.26s">&ldquo;Building Indonesia's Premium Entertainment Group.&rdquo;</p>
+  <div class="segera anim" style="animation-delay:.34s">Website Coming Soon</div>
+
+  <div class="brand-judul anim" style="animation-delay:.42s">Explore Our Brands</div>
+  <div class="brand-daftar anim" style="animation-delay:.48s">
+    <div class="brand"><div class="bm">K</div><span>Pegasus Karting GP</span></div>
+    <div class="brand"><div class="bm">B</div><span>Pegasus Bowling</span></div>
+    <div class="brand"><div class="bm">B</div><span>Pegasus Billiard</span></div>
+    <div class="brand"><div class="bm">I</div><span>Pegasus Instattoo</span></div>
+    <div class="brand"><div class="bm">T</div><span>Pegasus Train and Co.</span></div>
+  </div>
+
+  <div class="footer anim" style="animation-delay:.56s">&copy; 2026 Pegasus Nusantara Group &middot; Indonesia</div>
+</body>
+</html>

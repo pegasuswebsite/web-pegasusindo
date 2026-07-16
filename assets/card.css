@@ -1,0 +1,133 @@
+/* ============================================================================
+   PEGASUS CARD (frontend domain) — card.css
+   Tema identik dengan Public.html backend: hitam/charcoal + metallic gold.
+   ========================================================================== */
+:root {
+  --bg: #0d0d0f; --panel: #16161a; --garis: #26262c;
+  --emas: #c9a227; --emas-terang: #e8c96a; --emas-pudar: rgba(201,162,39,.35);
+  --putih: #f5f5f4; --abu: #9a9aa2; --abu-gelap: #6b6b73;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { background: var(--bg); }
+body {
+  min-height: 100vh; color: var(--putih);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: radial-gradient(900px 480px at 50% -8%, #1d1d24 0%, var(--bg) 62%);
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+.wadah { max-width: 430px; margin: 0 auto; padding: 40px 22px 34px; }
+
+.anim { opacity: 0; transform: translateY(14px); animation: masuk .6s ease forwards; }
+@keyframes masuk { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .anim { animation: none; opacity: 1; transform: none; } }
+
+/* ---------- status muat ---------- */
+.muat { text-align: center; padding: 80px 20px; color: var(--abu-gelap); font-size: 13px; }
+.muat .spin {
+  width: 30px; height: 30px; margin: 0 auto 16px; border-radius: 50%;
+  border: 2px solid var(--garis); border-top-color: var(--emas);
+  animation: putar 0.9s linear infinite;
+}
+@keyframes putar { to { transform: rotate(360deg); } }
+
+/* ---------- identitas ---------- */
+.logo-grup { display: flex; justify-content: center; margin-bottom: 26px; }
+.logo-grup img { max-height: 46px; max-width: 200px; object-fit: contain; }
+.logo-mono {
+  width: 58px; height: 58px; border: 1.5px solid var(--emas); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 24px; color: var(--emas-terang);
+}
+.foto-wadah { display: flex; justify-content: center; margin-bottom: 20px; }
+.foto {
+  width: 128px; height: 128px; border-radius: 50%; object-fit: cover; display: block;
+  border: 2px solid var(--emas); box-shadow: 0 0 0 5px rgba(201,162,39,.12), 0 18px 40px rgba(0,0,0,.55);
+}
+.foto-ph {
+  width: 128px; height: 128px; border-radius: 50%;
+  border: 2px solid var(--emas-pudar); background: var(--panel);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 44px; color: var(--emas);
+}
+.nama {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 30px;
+  text-align: center; letter-spacing: .3px; line-height: 1.2;
+}
+.jabatan {
+  text-align: center; margin-top: 9px; color: var(--emas-terang);
+  font-size: 12.5px; letter-spacing: 2.6px; text-transform: uppercase; font-weight: 500;
+}
+.perusahaan { text-align: center; margin-top: 7px; color: var(--abu); font-size: 14.5px; }
+.deskripsi { text-align: center; margin-top: 14px; color: var(--abu); font-size: 13.5px; line-height: 1.65; }
+.garis-emas {
+  width: 46px; height: 1.5px; margin: 24px auto;
+  background: linear-gradient(90deg, transparent, var(--emas), transparent);
+}
+
+/* ---------- tombol ---------- */
+.simpan {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 15px 18px; border: 0; border-radius: 14px; cursor: pointer;
+  background: linear-gradient(135deg, #d9b448 0%, var(--emas) 55%, #a8871f 100%);
+  color: #14120a; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+  letter-spacing: .4px; box-shadow: 0 10px 26px rgba(201,162,39,.22);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.simpan:active { transform: scale(.98); box-shadow: 0 5px 14px rgba(201,162,39,.18); }
+.simpan svg { width: 20px; height: 20px; flex: 0 0 20px; fill: #14120a; }
+.grid-tombol { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 13px; }
+.tbl {
+  display: flex; align-items: center; gap: 10px; padding: 13px 15px;
+  background: var(--panel); border: 1px solid var(--garis); border-radius: 13px;
+  color: var(--putih); font-size: 13.5px; font-weight: 500; text-decoration: none;
+  cursor: pointer; transition: border-color .18s ease, background .18s ease;
+}
+.tbl:active { background: #1d1d23; border-color: var(--emas-pudar); }
+.tbl svg { width: 19px; height: 19px; flex: 0 0 19px; fill: var(--emas-terang); }
+
+/* ---------- brands ---------- */
+.brand-judul {
+  text-align: center; margin: 34px 0 16px; color: var(--abu-gelap);
+  font-size: 11px; letter-spacing: 3.4px; text-transform: uppercase; font-weight: 600;
+}
+.brand-daftar { display: flex; flex-direction: column; gap: 9px; }
+.brand {
+  display: flex; align-items: center; gap: 13px; padding: 11px 15px;
+  background: rgba(22,22,26,.65); border: 1px solid var(--garis); border-radius: 13px;
+}
+.brand img { width: 34px; height: 34px; border-radius: 9px; object-fit: contain; background: #fff; padding: 2px; }
+.brand-mono {
+  width: 34px; height: 34px; border-radius: 9px; flex: 0 0 34px;
+  border: 1px solid var(--emas-pudar); display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 14px; color: var(--emas-terang);
+}
+.brand span { font-size: 13.5px; color: var(--putih); }
+
+/* ---------- quote & tagline & footer ---------- */
+.tagline {
+  text-align: center; font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 14.5px; color: var(--emas-terang); line-height: 1.6;
+}
+.tagline-atas { margin-top: 14px; }
+.tagline-bawah { margin-top: 36px; }
+.footer { text-align: center; margin-top: 20px; color: var(--abu-gelap); font-size: 10.5px; letter-spacing: 2.4px; text-transform: uppercase; }
+
+/* ---------- modal WeChat ---------- */
+.modal-latar {
+  position: fixed; inset: 0; background: rgba(0,0,0,.72); display: none;
+  align-items: flex-end; justify-content: center; z-index: 50; backdrop-filter: blur(3px);
+}
+.modal-latar.buka { display: flex; }
+.modal {
+  background: var(--panel); border: 1px solid var(--garis); border-radius: 20px 20px 0 0;
+  padding: 26px 22px 34px; width: 100%; max-width: 430px; text-align: center;
+}
+.modal h3 { font-size: 16px; margin-bottom: 6px; }
+.modal .wid { color: var(--emas-terang); font-size: 15px; margin: 10px 0 4px; user-select: all; }
+.modal img { width: 190px; height: 190px; border-radius: 12px; margin-top: 12px; background: #fff; padding: 6px; }
+.modal .ket { color: var(--abu); font-size: 12.5px; margin-top: 8px; }
+.modal button {
+  margin-top: 18px; padding: 11px 34px; border-radius: 11px; border: 1px solid var(--garis);
+  background: transparent; color: var(--putih); font-size: 14px; cursor: pointer;
+}
+@media (min-width: 480px) { .modal-latar { align-items: center; } .modal { border-radius: 20px; } }
