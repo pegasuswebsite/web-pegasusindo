@@ -33,6 +33,11 @@
     s.appendChild(p);
     return s;
   }
+  /* Buang tanda kutip yang sudah diketik user di awal/akhir teks (desain menambahkan
+     kutip emas sendiri — mencegah kutip dobel). */
+  function bersihKutip(s) {
+    return String(s || '').trim().replace(/^["'“”‘’]+/, '').replace(/["'“”‘’]+$/, '').trim();
+  }
   function inisial(nama) {
     var kata = String(nama || '').replace(/^Pegasus\s+/i, '').trim().split(/\s+/);
     return (kata[0] || 'P').charAt(0).toUpperCase();
@@ -128,7 +133,8 @@
     var de = document.getElementById('deskripsi');
     if (D.deskripsi) de.textContent = D.deskripsi; else de.style.display = 'none';
     var qt = document.getElementById('quote');
-    if (D.quote) qt.textContent = '“' + D.quote + '”'; else qt.style.display = 'none';
+    var isiQ = bersihKutip(D.quote);
+    if (isiQ) qt.textContent = '“' + isiQ + '”'; else qt.style.display = 'none';
 
     var daftar = (D.tombol || []).slice();
     var iSave = daftar.indexOf('save_contact');
@@ -166,7 +172,8 @@
     }
 
     var tg = document.getElementById('tagline');
-    if (D.tagline) tg.textContent = '“' + D.tagline + '”'; else tg.style.display = 'none';
+    var isiT = bersihKutip(D.tagline);
+    if (isiT) tg.textContent = '“' + isiT + '”'; else tg.style.display = 'none';
     document.getElementById('footer').textContent = D.namaGrup || CFG.NAMA_GRUP || '';
 
     document.getElementById('muat').style.display = 'none';
