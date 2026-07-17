@@ -1,133 +1,253 @@
 /* ============================================================================
-   PEGASUS CARD (frontend domain) — card.css
-   Tema identik dengan Public.html backend: hitam/charcoal + metallic gold.
+   PEGASUS CARD — card.css
+   VERSION 2 — Luxury Executive Edition (17-Jul-2026)
+   Prinsip: less is more; kemewahan lewat cahaya, kedalaman, dan presisi —
+   bukan ornamen. Referensi rasa: Porsche, Rolex, Bentley, Aman, Apple.
+   Struktur HTML & class TIDAK berubah dari V1.
    ========================================================================== */
 :root {
-  --bg: #0d0d0f; --panel: #16161a; --garis: #26262c;
-  --emas: #c9a227; --emas-terang: #e8c96a; --emas-pudar: rgba(201,162,39,.35);
-  --putih: #f5f5f4; --abu: #9a9aa2; --abu-gelap: #6b6b73;
+  --bg: #0b0b0d;
+  --panel: #17171c; --panel2: #1b1b21;
+  --garis: #26262e; --garis-terang: #32323b;
+  --emas: #c9a227; --emas-terang: #e8c96a; --emas-tepi: #d5b04a;
+  --emas-pudar: rgba(201, 162, 39, .32);
+  --putih: #f7f6f3; --abu: #a6a6b0; --abu-gelap: #8a8a94;
+  --ease: cubic-bezier(.22, .61, .36, 1);   /* easing premium: cepat lalu mendarat halus */
 }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { background: var(--bg); }
 body {
   min-height: 100vh; color: var(--putih);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: radial-gradient(900px 480px at 50% -8%, #1d1d24 0%, var(--bg) 62%);
   padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  position: relative;
 }
-.wadah { max-width: 430px; margin: 0 auto; padding: 40px 22px 34px; }
+/* Latar berlapis: halo hangat di puncak + kabut emas sangat tipis + gelap tenang
+   di dasar. Tiga lapis cahaya, nol ornamen. */
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(1100px 680px at 50% -14%, rgba(216, 178, 88, .075), transparent 62%),
+    radial-gradient(880px 500px at 50% -6%, #17171d 0%, transparent 60%),
+    linear-gradient(180deg, #101013 0%, var(--bg) 52%, #09090b 100%);
+}
+.wadah { max-width: 430px; margin: 0 auto; padding: 48px 22px 40px; }
 
-.anim { opacity: 0; transform: translateY(14px); animation: masuk .6s ease forwards; }
+/* ---------- animasi masuk: lebih panjang, mendarat lembut ---------- */
+.anim { opacity: 0; transform: translateY(18px); animation: masuk .9s var(--ease) forwards; }
 @keyframes masuk { to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .anim { animation: none; opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .anim { animation: none; opacity: 1; transform: none; }
+  * { transition: none !important; }
+}
 
 /* ---------- status muat ---------- */
-.muat { text-align: center; padding: 80px 20px; color: var(--abu-gelap); font-size: 13px; }
+.muat { text-align: center; padding: 90px 20px; color: var(--abu-gelap); font-size: 13px; letter-spacing: .4px; }
 .muat .spin {
-  width: 30px; height: 30px; margin: 0 auto 16px; border-radius: 50%;
-  border: 2px solid var(--garis); border-top-color: var(--emas);
-  animation: putar 0.9s linear infinite;
+  width: 30px; height: 30px; margin: 0 auto 18px; border-radius: 50%;
+  border: 1.5px solid var(--garis); border-top-color: var(--emas);
+  animation: putar 1s linear infinite;
 }
 @keyframes putar { to { transform: rotate(360deg); } }
 
-/* ---------- identitas ---------- */
-.logo-grup { display: flex; justify-content: center; margin-bottom: 26px; }
-.logo-grup img { max-height: 46px; max-width: 200px; object-fit: contain; }
-.logo-mono {
-  width: 58px; height: 58px; border: 1.5px solid var(--emas); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Playfair Display', serif; font-size: 24px; color: var(--emas-terang);
+/* ---------- hero: logo ---------- */
+.logo-grup { display: flex; justify-content: center; margin-bottom: 30px; }
+.logo-grup img {
+  max-height: 54px; max-width: 220px; object-fit: contain;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .55));
 }
-.foto-wadah { display: flex; justify-content: center; margin-bottom: 20px; }
+.logo-mono {
+  width: 62px; height: 62px; border: 1.5px solid var(--emas); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 25px; color: var(--emas-terang);
+}
+
+/* ---------- hero: foto sebagai focal point ---------- */
+.foto-wadah { display: flex; justify-content: center; margin-bottom: 24px; position: relative; }
+/* ambient gold light di belakang foto — sangat halus, sumber "kemewahan" utama */
+.foto-wadah::before {
+  content: ''; position: absolute; z-index: 0;
+  width: 240px; height: 240px; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(201, 162, 39, .16), rgba(201, 162, 39, .05) 55%, transparent 72%);
+  pointer-events: none;
+}
 .foto {
-  width: 128px; height: 128px; border-radius: 50%; object-fit: cover; display: block;
-  border: 2px solid var(--emas); box-shadow: 0 0 0 5px rgba(201,162,39,.12), 0 18px 40px rgba(0,0,0,.55);
+  width: 138px; height: 138px; border-radius: 50%; object-fit: cover; display: block;
+  position: relative; z-index: 1;
+  border: 1.5px solid var(--emas-tepi);
+  box-shadow:
+    0 0 0 1px rgba(232, 201, 106, .22),        /* garis cahaya tipis di tepi */
+    0 26px 52px rgba(0, 0, 0, .62),            /* kedalaman */
+    0 0 48px rgba(201, 162, 39, .10);          /* pendar emas lembut */
 }
 .foto-ph {
-  width: 128px; height: 128px; border-radius: 50%;
-  border: 2px solid var(--emas-pudar); background: var(--panel);
+  width: 138px; height: 138px; border-radius: 50%;
+  position: relative; z-index: 1;
+  border: 1.5px solid var(--emas-pudar); background: var(--panel);
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Playfair Display', serif; font-size: 44px; color: var(--emas);
+  font-family: 'Playfair Display', serif; font-size: 46px; color: var(--emas);
+  box-shadow: 0 26px 52px rgba(0, 0, 0, .55);
 }
+
+/* ---------- identitas ---------- */
 .nama {
-  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 30px;
-  text-align: center; letter-spacing: .3px; line-height: 1.2;
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 32px;
+  text-align: center; letter-spacing: .2px; line-height: 1.18;
 }
 .jabatan {
-  text-align: center; margin-top: 9px; color: var(--emas-terang);
-  font-size: 12.5px; letter-spacing: 2.6px; text-transform: uppercase; font-weight: 500;
+  text-align: center; margin-top: 10px; color: var(--emas-terang);
+  font-size: 12.5px; letter-spacing: 3.2px; text-transform: uppercase; font-weight: 500;
 }
-.perusahaan { text-align: center; margin-top: 7px; color: var(--abu); font-size: 14.5px; }
-.deskripsi { text-align: center; margin-top: 14px; color: var(--abu); font-size: 13.5px; line-height: 1.65; }
+.perusahaan { text-align: center; margin-top: 8px; color: var(--abu); font-size: 14.5px; letter-spacing: .2px; }
+.deskripsi {
+  text-align: center; margin-top: 16px; color: var(--abu);
+  font-size: 13.5px; line-height: 1.7;
+}
 .garis-emas {
-  width: 46px; height: 1.5px; margin: 24px auto;
+  width: 52px; height: 1px; margin: 30px auto;
   background: linear-gradient(90deg, transparent, var(--emas), transparent);
 }
 
-/* ---------- tombol ---------- */
+/* ---------- CTA utama ---------- */
 .simpan {
   display: flex; align-items: center; justify-content: center; gap: 10px;
-  width: 100%; padding: 15px 18px; border: 0; border-radius: 14px; cursor: pointer;
-  background: linear-gradient(135deg, #d9b448 0%, var(--emas) 55%, #a8871f 100%);
-  color: #14120a; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
-  letter-spacing: .4px; box-shadow: 0 10px 26px rgba(201,162,39,.22);
-  transition: transform .15s ease, box-shadow .15s ease;
+  width: 100%; padding: 16px 18px; border: 0; border-radius: 14px; cursor: pointer;
+  position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #e6c35c 0%, var(--emas) 50%, #9d7e1d 100%);
+  color: #131007; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+  letter-spacing: .5px;
+  box-shadow:
+    0 14px 32px rgba(201, 162, 39, .22),
+    inset 0 1px 0 rgba(255, 255, 255, .38),    /* kilau logam di bibir atas */
+    inset 0 -1px 0 rgba(0, 0, 0, .22);
+  transition: transform .28s var(--ease), box-shadow .28s var(--ease), filter .28s var(--ease);
 }
-.simpan:active { transform: scale(.98); box-shadow: 0 5px 14px rgba(201,162,39,.18); }
-.simpan svg { width: 20px; height: 20px; flex: 0 0 20px; fill: #14120a; }
-.grid-tombol { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 13px; }
+.simpan svg { width: 20px; height: 20px; flex: 0 0 20px; fill: #131007; }
+/* sapuan cahaya satu arah saat hover — pelan, sekali lewat */
+.simpan::after {
+  content: ''; position: absolute; top: 0; left: -70%; width: 42%; height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .30), transparent);
+  transform: skewX(-18deg); pointer-events: none; transition: left .7s var(--ease);
+}
+@media (hover: hover) {
+  .simpan:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 40px rgba(201, 162, 39, .30),
+      inset 0 1px 0 rgba(255, 255, 255, .42), inset 0 -1px 0 rgba(0, 0, 0, .22);
+    filter: brightness(1.03);
+  }
+  .simpan:hover::after { left: 125%; }
+}
+.simpan:active { transform: translateY(0) scale(.985); box-shadow: 0 8px 18px rgba(201, 162, 39, .20); }
+
+/* ---------- tombol kontak ---------- */
+.grid-tombol { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 14px; }
 .tbl {
-  display: flex; align-items: center; gap: 10px; padding: 13px 15px;
-  background: var(--panel); border: 1px solid var(--garis); border-radius: 13px;
+  display: flex; align-items: center; gap: 10px; padding: 14px 15px;
+  background: linear-gradient(180deg, #1b1b21 0%, #15151a 100%);
+  border: 1px solid #2a2a32; border-radius: 13px;
   color: var(--putih); font-size: 13.5px; font-weight: 500; text-decoration: none;
-  cursor: pointer; transition: border-color .18s ease, background .18s ease;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
+  transition: transform .25s var(--ease), border-color .25s var(--ease),
+              box-shadow .25s var(--ease), background .25s var(--ease);
 }
-.tbl:active { background: #1d1d23; border-color: var(--emas-pudar); }
-.tbl svg { width: 19px; height: 19px; flex: 0 0 19px; fill: var(--emas-terang); }
+.tbl svg { width: 19px; height: 19px; flex: 0 0 19px; fill: var(--emas-terang); transition: fill .25s var(--ease); }
+@media (hover: hover) {
+  .tbl:hover {
+    transform: translateY(-1px);
+    border-color: rgba(201, 162, 39, .42);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .38), inset 0 1px 0 rgba(255, 255, 255, .05);
+  }
+  .tbl:hover svg { fill: #f2dc90; }
+}
+.tbl:active { transform: translateY(0); background: #1d1d24; border-color: var(--emas-pudar); }
 
-/* ---------- brands ---------- */
+/* ---------- Pegasus Brands: dari list menjadi kartu premium ---------- */
 .brand-judul {
-  text-align: center; margin: 34px 0 16px; color: var(--abu-gelap);
-  font-size: 11px; letter-spacing: 3.4px; text-transform: uppercase; font-weight: 600;
+  text-align: center; margin: 40px 0 18px; color: var(--abu-gelap);
+  font-size: 11px; letter-spacing: 3.6px; text-transform: uppercase; font-weight: 600;
 }
-.brand-daftar { display: flex; flex-direction: column; gap: 9px; }
+.brand-daftar { display: flex; flex-direction: column; gap: 10px; }
 .brand {
-  display: flex; align-items: center; gap: 13px; padding: 11px 15px;
-  background: rgba(22,22,26,.65); border: 1px solid var(--garis); border-radius: 13px;
+  display: flex; align-items: center; gap: 15px; padding: 13px 17px;
+  background: linear-gradient(180deg, rgba(27, 27, 33, .92) 0%, rgba(19, 19, 24, .88) 100%);
+  border: 1px solid var(--garis); border-radius: 15px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035), 0 4px 14px rgba(0, 0, 0, .22);
+  transition: transform .28s var(--ease), border-color .28s var(--ease), box-shadow .28s var(--ease);
 }
-.brand img { width: 34px; height: 34px; border-radius: 9px; object-fit: contain; background: #fff; padding: 2px; }
+.brand img {
+  width: 44px; height: 44px; border-radius: 11px; object-fit: contain;
+  background: #fff; padding: 3px; flex: 0 0 44px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .35);
+  transition: transform .28s var(--ease);
+}
 .brand-mono {
-  width: 34px; height: 34px; border-radius: 9px; flex: 0 0 34px;
-  border: 1px solid var(--emas-pudar); display: flex; align-items: center; justify-content: center;
-  font-family: 'Playfair Display', serif; font-size: 14px; color: var(--emas-terang);
+  width: 44px; height: 44px; border-radius: 11px; flex: 0 0 44px;
+  border: 1px solid var(--emas-pudar);
+  background: linear-gradient(160deg, #1d1d23, #141419);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 17px; color: var(--emas-terang);
+  transition: transform .28s var(--ease);
 }
-.brand span { font-size: 13.5px; color: var(--putih); }
+.brand span { font-size: 14px; color: var(--putih); letter-spacing: .2px; }
+@media (hover: hover) {
+  .brand:hover {
+    transform: translateY(-2px);
+    border-color: rgba(201, 162, 39, .38);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 12px 26px rgba(0, 0, 0, .4);
+  }
+  .brand:hover img, .brand:hover .brand-mono { transform: scale(1.05); }
+}
 
-/* ---------- quote & tagline & footer ---------- */
+/* ---------- personal quote (bawah deskripsi) & tagline grup (bawah kartu) ---------- */
 .tagline {
   text-align: center; font-family: 'Playfair Display', serif;
-  font-style: italic; font-size: 14.5px; color: var(--emas-terang); line-height: 1.6;
+  font-style: italic; color: var(--emas-terang);
 }
-.tagline-atas { margin-top: 14px; }
-.tagline-bawah { margin-top: 36px; }
-.footer { text-align: center; margin-top: 20px; color: var(--abu-gelap); font-size: 10.5px; letter-spacing: 2.4px; text-transform: uppercase; }
+.tagline-atas {
+  margin-top: 20px; font-size: 16.5px; line-height: 1.72; color: #ecd28a;
+  padding: 0 4px;
+}
+.tagline-bawah { margin-top: 44px; font-size: 14.5px; line-height: 1.6; }
+.footer {
+  text-align: center; margin-top: 22px; color: var(--abu-gelap);
+  font-size: 10.5px; letter-spacing: 2.6px; text-transform: uppercase;
+}
+
+/* ---------- focus keyboard (accessibility) ---------- */
+button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--emas-terang); outline-offset: 3px; border-radius: 14px;
+}
 
 /* ---------- modal WeChat ---------- */
 .modal-latar {
-  position: fixed; inset: 0; background: rgba(0,0,0,.72); display: none;
-  align-items: flex-end; justify-content: center; z-index: 50; backdrop-filter: blur(3px);
+  position: fixed; inset: 0; background: rgba(5, 5, 7, .74); display: none;
+  align-items: flex-end; justify-content: center; z-index: 50; backdrop-filter: blur(4px);
 }
 .modal-latar.buka { display: flex; }
 .modal {
-  background: var(--panel); border: 1px solid var(--garis); border-radius: 20px 20px 0 0;
-  padding: 26px 22px 34px; width: 100%; max-width: 430px; text-align: center;
+  background: linear-gradient(180deg, #1b1b21, #141419);
+  border: 1px solid var(--garis-terang); border-radius: 22px 22px 0 0;
+  padding: 28px 22px 36px; width: 100%; max-width: 430px; text-align: center;
+  box-shadow: 0 -18px 60px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .04);
+  animation: modalMasuk .38s var(--ease);
 }
-.modal h3 { font-size: 16px; margin-bottom: 6px; }
+@keyframes modalMasuk { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .modal { animation: none; } }
+.modal h3 { font-size: 16px; margin-bottom: 6px; letter-spacing: .3px; }
 .modal .wid { color: var(--emas-terang); font-size: 15px; margin: 10px 0 4px; user-select: all; }
-.modal img { width: 190px; height: 190px; border-radius: 12px; margin-top: 12px; background: #fff; padding: 6px; }
-.modal .ket { color: var(--abu); font-size: 12.5px; margin-top: 8px; }
+.modal img { width: 190px; height: 190px; border-radius: 14px; margin-top: 14px; background: #fff; padding: 6px; }
+.modal .ket { color: var(--abu); font-size: 12.5px; margin-top: 10px; line-height: 1.6; }
 .modal button {
-  margin-top: 18px; padding: 11px 34px; border-radius: 11px; border: 1px solid var(--garis);
+  margin-top: 20px; padding: 12px 38px; border-radius: 12px; border: 1px solid var(--garis-terang);
   background: transparent; color: var(--putih); font-size: 14px; cursor: pointer;
+  transition: border-color .25s var(--ease), background .25s var(--ease);
 }
-@media (min-width: 480px) { .modal-latar { align-items: center; } .modal { border-radius: 20px; } }
+@media (hover: hover) { .modal button:hover { border-color: var(--emas-pudar); background: rgba(201, 162, 39, .06); } }
+@media (min-width: 480px) {
+  .modal-latar { align-items: center; }
+  .modal { border-radius: 22px; }
+  @keyframes modalMasuk { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: none; } }
+}

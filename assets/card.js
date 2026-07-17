@@ -113,9 +113,44 @@
       var w = document.getElementById('wcQrWadah');
       w.textContent = '';
       if (D.wechatQrUri) { var img = el('img'); img.src = D.wechatQrUri; img.alt = 'QR WeChat'; w.appendChild(img); }
-      document.getElementById('modalWc').classList.add('buka');
+      bukaModalWc();
     }
   }
+
+  /* ---------- modal WeChat: accessibility (V2) ----------
+     role=dialog + aria-modal, fokus pindah ke tombol Tutup, Tab terkunci di
+     dalam modal, Escape/klik latar menutup, fokus kembali ke pemicu. */
+  var wcPemicu = null;
+  function bukaModalWc() {
+    var latar = document.getElementById('modalWc');
+    latar.setAttribute('role', 'dialog');
+    latar.setAttribute('aria-modal', 'true');
+    latar.setAttribute('aria-label', 'Kontak WeChat');
+    wcPemicu = document.activeElement;
+    latar.classList.add('buka');
+    var tombolTutup = latar.querySelector('button');
+    if (tombolTutup) { tombolTutup.onclick = tutupModalWc; tombolTutup.focus(); }
+  }
+  function tutupModalWc() {
+    var latar = document.getElementById('modalWc');
+    latar.classList.remove('buka');
+    if (wcPemicu && wcPemicu.focus) wcPemicu.focus();
+    wcPemicu = null;
+  }
+  document.addEventListener('keydown', function (e) {
+    var latar = document.getElementById('modalWc');
+    if (!latar || !latar.classList.contains('buka')) return;
+    if (e.key === 'Escape') { e.preventDefault(); tutupModalWc(); return; }
+    if (e.key === 'Tab') {           // satu kontrol fokusable → kunci fokus di tombol Tutup
+      e.preventDefault();
+      var b = latar.querySelector('button');
+      if (b) b.focus();
+    }
+  });
+  document.addEventListener('click', function (e) {
+    var latar = document.getElementById('modalWc');
+    if (latar && latar.classList.contains('buka') && e.target === latar) tutupModalWc();
+  });
 
   /* ---------- render ---------- */
   function render() {
