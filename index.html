@@ -43,15 +43,14 @@
     /* ---------- hero ---------- */
     .hero { text-align: center; }
     .hero img.logo {
-      max-height: 188px; max-width: 460px; object-fit: contain;
+      max-height: 564px; max-width: min(88vw, 660px); object-fit: contain;
       filter: drop-shadow(0 10px 26px rgba(0, 0, 0, .55));
     }
-    .hero h1 {
-      font-family: 'Playfair Display', serif; font-weight: 600;
-      font-size: clamp(34px, 6.5vw, 54px); letter-spacing: 7px; margin-top: 28px; line-height: 1.14;
+    .hero h1, .hero .grup {   /* wordmark teks disembunyikan (logo sudah memuat nama grup) —
+                               tetap di DOM utk SEO & screen reader */
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap;
     }
-    .hero .grup { margin-top: 10px; color: var(--emas-terang); font-size: clamp(12px, 2.4vw, 16px);
-                  letter-spacing: 8px; font-weight: 500; }
     .garis-emas { width: 54px; height: 1px; margin: 34px auto;
                   background: linear-gradient(90deg, transparent, var(--emas), transparent); }
     .tagline { font-family: 'Playfair Display', serif; font-style: italic; color: #ecd28a;
