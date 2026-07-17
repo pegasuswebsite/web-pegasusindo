@@ -22,7 +22,7 @@
     maps: 'M12 2a8 8 0 00-8 8c0 5.4 7 11.5 7.3 11.8a1 1 0 001.4 0C13 21.5 20 15.4 20 10a8 8 0 00-8-8m0 2a6 6 0 016 6c0 3.4-3.9 7.8-6 9.7-2.1-1.9-6-6.3-6-9.7a6 6 0 016-6m0 3a3 3 0 100 6 3 3 0 000-6z'
   };
   var LABEL = { whatsapp: 'WhatsApp', email: 'Email', website: 'Website', wechat: 'WeChat',
-                linkedin: 'LinkedIn', instagram: 'Instagram', maps: 'Lokasi Kantor' };
+                linkedin: 'LinkedIn', instagram: 'Instagram', maps: 'Office Location' };
 
   function el(tag, cls) { var n = document.createElement(tag); if (cls) n.className = cls; return n; }
   function svgIkon(jenis) {

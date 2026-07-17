@@ -53,8 +53,8 @@ body::before {
 /* ---------- hero: logo ---------- */
 .logo-grup { display: flex; justify-content: center; margin-bottom: 30px; }
 .logo-grup img {
-  max-height: 54px; max-width: 220px; object-fit: contain;
-  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .55));
+  max-height: 72px; max-width: 280px; object-fit: contain;
+  filter: drop-shadow(0 8px 22px rgba(0, 0, 0, .55));
 }
 .logo-mono {
   width: 62px; height: 62px; border: 1.5px solid var(--emas); border-radius: 50%;
