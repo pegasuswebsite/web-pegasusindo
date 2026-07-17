@@ -41,7 +41,14 @@
     @media (prefers-reduced-motion: reduce) { .anim { animation: none; opacity: 1; transform: none; } }
 
     /* ---------- hero ---------- */
-    .hero { text-align: center; }
+    .hero { text-align: center; position: relative; }
+    .hero::before {
+      content: ''; position: absolute; z-index: 0; left: 50%; top: 130px;
+      width: min(90vw, 620px); height: 420px; transform: translate(-50%, -50%);
+      background: radial-gradient(closest-side, rgba(216, 178, 88, .11), transparent 72%);
+      pointer-events: none;
+    }
+    .hero > * { position: relative; z-index: 1; }
     .hero img.logo {
       max-height: 280px; max-width: min(80vw, 460px); object-fit: contain;
       filter: drop-shadow(0 10px 26px rgba(0, 0, 0, .55));
@@ -69,13 +76,14 @@
     .brand {
       display: flex; align-items: center; gap: 15px; padding: 16px 18px;
       background: linear-gradient(180deg, rgba(27, 27, 33, .92), rgba(19, 19, 24, .88));
-      border: 1px solid var(--garis); border-radius: 16px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035), 0 4px 14px rgba(0, 0, 0, .22);
+      border: 1px solid #2b2b34; border-radius: 18px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .045), 0 8px 22px rgba(0, 0, 0, .30);
       transition: transform .28s var(--ease), border-color .28s var(--ease), box-shadow .28s var(--ease);
     }
-    .brand img { width: 48px; height: 48px; border-radius: 12px; object-fit: contain;
-                 background: #fff; padding: 3px; flex: 0 0 48px; box-shadow: 0 3px 10px rgba(0, 0, 0, .35); }
-    .brand .mono { width: 48px; height: 48px; border-radius: 12px; flex: 0 0 48px;
+    .brand img { width: 56px; height: 56px; border-radius: 14px; object-fit: contain;
+                 background: #fff; padding: 3px; flex: 0 0 56px;
+                 box-shadow: 0 4px 14px rgba(0, 0, 0, .4), 0 0 0 1px rgba(201, 162, 39, .10); }
+    .brand .mono { width: 56px; height: 56px; border-radius: 14px; flex: 0 0 56px;
                    border: 1px solid var(--emas-pudar);
                    background: linear-gradient(160deg, #1d1d23, #141419);
                    display: flex; align-items: center; justify-content: center;
@@ -105,10 +113,10 @@
     /* ---------- kontak ---------- */
     .kontak { text-align: center; }
     .kontak a.tombol {
-      display: inline-flex; align-items: center; gap: 10px; padding: 15px 34px;
+      display: inline-flex; align-items: center; gap: 10px; padding: 18px 48px;
       border-radius: 14px; text-decoration: none;
       background: linear-gradient(160deg, #e6c35c 0%, var(--emas) 50%, #9d7e1d 100%);
-      color: #131007; font-weight: 600; font-size: 15px; letter-spacing: .4px;
+      color: #131007; font-weight: 600; font-size: 16px; letter-spacing: .5px;
       box-shadow: 0 14px 32px rgba(201, 162, 39, .22), inset 0 1px 0 rgba(255, 255, 255, .38),
                   inset 0 -1px 0 rgba(0, 0, 0, .22);
       transition: transform .28s var(--ease), box-shadow .28s var(--ease);
@@ -153,7 +161,7 @@
     </div>
 
     <div class="footer anim" style="animation-delay:.52s">
-      &copy; 2026 Pegasus Nusantara Group<br>Full corporate website coming soon
+      &copy; 2026 Pegasus Nusantara Group<br>The complete digital experience &mdash; arriving soon
     </div>
   </div>
 

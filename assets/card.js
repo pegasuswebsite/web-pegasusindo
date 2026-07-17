@@ -159,7 +159,11 @@
     else { var m = el('div', 'logo-mono'); m.textContent = 'P'; lg.appendChild(m); }
 
     var fw = document.getElementById('fotoWadah');
-    if (D.fotoUri) { var f = el('img', 'foto'); f.src = D.fotoUri; f.alt = D.nama; fw.appendChild(f); }
+    if (D.fotoUri) {
+      var bingkai = el('div', 'foto-bingkai');
+      var f = el('img'); f.src = D.fotoUri; f.alt = D.nama;
+      bingkai.appendChild(f); fw.appendChild(bingkai);
+    }
     else { var ph = el('div', 'foto-ph'); ph.textContent = inisial(D.nama); fw.appendChild(ph); }
 
     document.getElementById('nama').textContent = D.nama || '';
